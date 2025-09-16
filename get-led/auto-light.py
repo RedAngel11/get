@@ -14,4 +14,3 @@ while True:
     if gg.input(foto):
         state = not state
         gg.output(led, state)
-        time.sleep(0.5)

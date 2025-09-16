@@ -20,7 +20,7 @@ def dec(value):
 
 while True:
     for led in leds:
-        if gg.input(up):
+        if gg.input(up and down):
             if num < 255: num = num +1
             print(num, dec(num))
             gg.output(led, 1)
@@ -35,4 +35,3 @@ while True:
             time.sleep(sleep_time)
             gg.output(led, 0)
             time.sleep(sleep_time)
-
