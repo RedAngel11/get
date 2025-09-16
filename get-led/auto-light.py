@@ -6,13 +6,12 @@ gg.setmode(gg.BCM)
 led = 26
 gg.setup(led, gg.OUT)
 
-but = 13
-gg.setup(but, gg.IN)
-
+foto = 6
+gg.setup(foto, gg.IN)
 state = 0
 
 while True:
-    if gg.input(but):
+    if gg.input(foto):
         state = not state
         gg.output(led, state)
-        time.sleep(0.3)
+        time.sleep(0.5)
