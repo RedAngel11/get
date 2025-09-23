@@ -12,7 +12,7 @@ down = 10
 gg.setup(up, gg.IN)
 gg.setup(down, gg.IN)
 
-num = 0
+num = 100
 sleep_time = 0.2
 
 def dec(value):
@@ -21,17 +21,29 @@ def dec(value):
 while True:
     for led in leds:
         if gg.input(up and down):
+            num = 255
+            pr = dec(num)
+            for i in range(0,8):
+                if pr[i]==1: gg.output(leds[i], 1)
+                if pr[i]==0: gg.output(leds[i], 0)
+            time.sleep(sleep_time)            
+        if gg.input(up):
             if num < 255: num = num +1
+            if num == 255: num = 0 
+            pr = dec(num)
             print(num, dec(num))
-            gg.output(led, 1)
+            for i in range(0,8):
+                if pr[i]==1: gg.output(leds[i], 1)
+                if pr[i]==0: gg.output(leds[i], 0)
             time.sleep(sleep_time)
-            gg.output(led, 0)
-            time.sleep(sleep_time)
+
 
         if gg.input(down):
             if num> 0: num = num - 1
-            gg.output(led, 1)
+            pr = dec(num)
             print(num, dec(num))
+            for i in range(0,8):
+                if pr[i]==1: gg.output(leds[i], 1)
+                if pr[i]==0: gg.output(leds[i], 0)
             time.sleep(sleep_time)
-            gg.output(led, 0)
-            time.sleep(sleep_time)
+
