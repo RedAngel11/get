@@ -12,5 +12,6 @@ state = 0
 
 while True:
     if gg.input(foto):
-        state = not state
+        state = 0
         gg.output(led, state)
+    else: gg.output(led, 1)
