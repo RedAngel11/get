@@ -22,7 +22,6 @@ def number_to_dac(bin_num):#ПОДАТЬ ДВОИЧНОЕ ЧИСЛО НА ВЫХ
         for i in range(0,8):
                 if pr[i]==1: gg.output(pins[i], 1)
                 if pr[i]==0: gg.output(pins[i], 0)
-
     return 0
 
 try:#САМА РАБОТА ПРОГРАММЫ: 
