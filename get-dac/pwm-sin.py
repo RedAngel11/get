@@ -1,21 +1,18 @@
-import r2r_dac as r2r
+import pwm_dac as pwm
 import signal_generator as sg
 import time
 
-# Параметры сигнала
-amplitude = 3.2            # Вольты
+amplitude = 3.2          # Вольты
 signal_frequency = 100   # Гц частота синусоиды(меньше сотни не видно всю волну)
-sampling_frequency = 10000  # Гц сколько точек в секунду(больше 1000 не ставить)
-#если ставить слишком много точек, то будет вылетать часто
-#но из-за того, что их мало, у нас много бугорочков на графике
-# =================== ОСНОВНАЯ ПРОГРАММА ===================
+sampling_frequency = 1000 # частота дискретизации
 dac = None
 
 try:
-    # Создаём объект ЦАП (юзаем r2r_dac с классом R2R_DAC)
-    dac = r2r.R2R_DAC(
-        gpio_pins=[16, 20, 21, 25, 26, 17, 27, 22],  # BCM номера пинов
-        range = 3.3,                            # опорное напряжение
+    # Создаём объект 
+    dac = pwm.PWM_DAC(
+        gpio_pin= 12,
+        freq = sampling_frequency,
+        range = 3.17,                            # опорное напряжение
         verbose = True                           # можно включить для отладки
     )
 
@@ -30,8 +27,8 @@ try:
         sin_value = sg.get_sin_wave_A(signal_frequency, current_time)      
         voltage = sin_value * amplitude  # Преобразуем в напряжение      
         # Отправляем на ЦАП
-        code = dac.voltage_to_code(voltage)
-        dac.set_output(code)
+        duty = dac.voltage_to_duty(voltage)
+        dac.set_output(duty)
         # Ждём следующий период дискретизации
         sg.wait_for_sampling_period(sampling_frequency)
 finally:
