@@ -8,7 +8,7 @@ class R2R_ADC:
         self.compare_time = compare_time
 
         self.pins_gpio = [26, 20, 19, 16, 13, 12, 25, 11]
-        self.comp_gpio = 21
+        self.comp_gpio = 21 #компаратор
 
         gg.setmode(gg.BCM)
         gg.setup(self.pins_gpio, gg.OUT, initial = 0)
@@ -31,22 +31,28 @@ class R2R_ADC:
 
         return 255# если так и не превысило - максимум
 
-    def binary_search_adc(self):
-        low = 0
-        high = 255
-        while low < high:
-            mid = (low + high) // 2
-            self.num_to_dac(mid)
-            
-            if gg.input(self.comp_gpio) == 1:
-                high = mid - 1
+    def successive_approximation_adc(self):
+        digital_value = 0  
+
+        # начинаем со старшего (бит 7)
+        for bit in range(7, -1, -1):
+            # побитовый сдвиг, побитовое или
+            candidate = digital_value | (1 << bit) 
+
+            self.num_to_dac(candidate)
+            comp_output = gg.input(self.comp_gpio)
+
+            if comp_output == 0:
+                # Входное напряжение >= U_DAC → оставляем бит установленным
+                digital_value = candidate
             else:
-                low = mid + 1
-        
-        return high if high >= 0 else 0
-    
-    def get_sc_voltage(self): # число в напряжение
-        dig = self.binary_search_adc()
+                # U_DAC > входного → сбрасываем бит (он остаётся 0)
+                pass
+
+        return digital_value
+    def get_voltage(self): # число в напряжение
+        #dig = self.successive_approximation_adc()
+        dig = self.seq_count_adc()
         voltage = dig / 255 * self.range
         return voltage
 
@@ -56,10 +62,9 @@ if __name__ == "__main__":
         adc = R2R_ADC(3.281, 0.01, False)
 
         while True:
-            voltage = adc.get_sc_voltage()
+            voltage = adc.get_voltage()
             print(f"Напряжение: {voltage:.3f} В")
             time.sleep(0.1)
 
     except KeyboardInterrupt: print("\n Ты выключила программу")
     finally: adc.deinit()
-

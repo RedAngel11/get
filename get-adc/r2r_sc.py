@@ -17,7 +17,7 @@ if __name__ == "__main__":
             if current_time > duration:
                 break
 
-            voltage_values.append(adc.get_sc_voltage())
+            voltage_values.append(adc.get_voltage())
             time_values.append(current_time)
 
             time.sleep(0.01)
