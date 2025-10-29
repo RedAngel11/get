@@ -8,10 +8,6 @@ gg.setup(led, gg.OUT)
 
 foto = 6
 gg.setup(foto, gg.IN)
-state = 0
 
 while True:
-    if gg.input(foto):
-        state = 0
-        gg.output(led, state)
-    else: gg.output(led, 1)
+    gg.output(led, not gg.input(foto))
