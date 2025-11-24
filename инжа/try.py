@@ -9,9 +9,21 @@ with open("consumption.txt") as file:
 
 X = [0, 10, 20, 30, 40, 50, 60, 70]
 
-fig, ax = plt.subplots(figsize=(8, 10))
-ax.plot(X, Q, label='расход Q (0-70 мм)', color='orange')
-ax.scatter(X, Q, color='brown', marker='*')
+fig, ax = plt.subplots(figsize=(10,7))
+ax.plot(
+    X,
+    Q,
+    label='расход Q(r) для 0-70 мм',
+    color='#CF20FF'
+)
+ax.scatter(
+    X,
+    Q,
+    color='#AC29E0',
+    s = 120,
+    marker='*',
+    zorder=5
+)
 
 ax.minorticks_on()
 ax.grid(which='major', linewidth = 1)

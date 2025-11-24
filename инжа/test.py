@@ -1,27 +1,26 @@
 from matplotlib import pyplot as plt
 import numpy as np
 
-P_k = 89.691
-P_0 = 214572.6/P_k  #1189
+P_k = 96.22261
+P_0 = 214572.63/P_k  #1189
 # S_k = 184
 # S_0 = 0
 
 dr = 1
 
-ro = 1.34
-deltr = 0.56
-count = int(24/deltr)+1
+ro = 1.2
+deltr = 0.45
+count = int(30/deltr)+1
 pressure_00 = []
 with open("0.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_00.append(p)
+        if p >= 0:
+            pressure_00.append(p)
+
 # print(pressure_00)
-X_00 = [-24 + i*deltr for i in range(len(pressure_00))]
-Y_00 = [abs(-24 + i*deltr)*((1.7*pressure_00[i])**0.5) for i in range(len(pressure_00))]
+X_00 = [-30 + i*deltr for i in range(len(pressure_00))]
+Y_00 = [abs(-30 + i*deltr)*((1.7*pressure_00[i])**0.5) for i in range(len(pressure_00))]
 
 consumption_00 = 0
 for i in range(count):
@@ -31,16 +30,14 @@ for i in range(count):
 
 pressure_10 = []
 with open("10.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_10.append(p)
+        if p >= 0:
+            pressure_10.append(p)
 # print(pressure_10)
 # pressure_10.pop(0)
-X_10 = [-24 + i*deltr for i in range(len(pressure_10))]
-Y_10 = [abs(-24 + i*deltr)*((1.7*pressure_10[i])**0.5) for i in range(len(pressure_10))]
+X_10 = [-30 + i*deltr for i in range(len(pressure_10))]
+Y_10 = [abs(-30 + i*deltr)*((1.7*pressure_10[i])**0.5) for i in range(len(pressure_10))]
 
 consumption_10 = 0
 for i in range(count):
@@ -50,15 +47,13 @@ for i in range(count):
 
 pressure_20 = []
 with open("20.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_20.append(p)
+        if p >= 0:
+            pressure_20.append(p)
 
-X_20 = [-24 + i*deltr for i in range(len(pressure_20))]
-Y_20 = [abs(-24 + i*deltr)*((1.7*pressure_20[i])**0.5) for i in range(len(pressure_20))]
+X_20 = [-30 + i*deltr for i in range(len(pressure_20))]
+Y_20 = [abs(-30 + i*deltr)*((1.7*pressure_20[i])**0.5) for i in range(len(pressure_20))]
 
 consumption_20 = 0
 for i in range(count):
@@ -68,15 +63,13 @@ for i in range(count):
 
 pressure_30 = []
 with open("30.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_30.append(p)
+        if p >= 0:
+            pressure_30.append(p)
 # pressure_30.pop(0)
-X_30 = [-24 + i*deltr for i in range(len(pressure_30))]
-Y_30 = [abs(-24 + i*deltr)*((1.7*pressure_30[i])**0.5) for i in range(len(pressure_30))]
+X_30 = [-30 + i*deltr for i in range(len(pressure_30))]
+Y_30 = [abs(-30 + i*deltr)*((1.7*pressure_30[i])**0.5) for i in range(len(pressure_30))]
 
 consumption_30 = 0
 for i in range(count):
@@ -86,15 +79,13 @@ for i in range(count):
 
 pressure_40 = []
 with open("40.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_40.append(p)
+        if p >= 0:
+            pressure_40.append(p)
 # pressure_40.pop(0)
-X_40 = [-24 + i*deltr for i in range(len(pressure_40))]
-Y_40 = [abs(-24 + i*deltr)*((1.7*pressure_40[i])**0.5) for i in range(len(pressure_40))]
+X_40 = [-30 + i*deltr for i in range(len(pressure_40))]
+Y_40 = [abs(-30 + i*deltr)*((1.7*pressure_40[i])**0.5) for i in range(len(pressure_40))]
 
 consumption_40 = 0
 for i in range(count):
@@ -104,15 +95,13 @@ for i in range(count):
 
 pressure_50 = []
 with open("50.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_50.append(p)
+        if p >= 0:
+            pressure_50.append(p)
 
-X_50 = [-24 + i*deltr for i in range(len(pressure_50))]
-Y_50 = [abs(-24 + i*deltr)*((1.7*pressure_50[i])**0.5) for i in range(len(pressure_50))]
+X_50 = [-30 + i*deltr for i in range(len(pressure_50))]
+Y_50 = [abs(-30 + i*deltr)*((1.7*pressure_50[i])**0.5) for i in range(len(pressure_50))]
 
 consumption_50 = 0
 for i in range(count):
@@ -122,15 +111,13 @@ for i in range(count):
 
 pressure_60 = []
 with open("60.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_60.append(p)
+        if p >= 0:
+            pressure_60.append(p)
 
-X_60 = [-24 + i*deltr for i in range(len(pressure_60))]
-Y_60 = [abs(-24 + i*deltr)*((1.7*pressure_60[i])**0.5) for i in range(len(pressure_60))]
+X_60 = [-30 + i*deltr for i in range(len(pressure_60))]
+Y_60 = [abs(-30 + i*deltr)*((1.7*pressure_60[i])**0.5) for i in range(len(pressure_60))]
 
 consumption_60 = 0
 for i in range(count):
@@ -140,15 +127,13 @@ for i in range(count):
 
 pressure_70 = []
 with open("70.csv") as file:
-    _ = file.readline()
-    _ = file.readline()
-    _ = file.readline()
     for line in file:
         p = int(line) / P_k - P_0
-        pressure_70.append(p)
+        if p >= 0:
+            pressure_70.append(p)
 
-X_70 = [-24 + i*deltr for i in range(len(pressure_70))]
-Y_70 = [abs(-24 + i*deltr)*((1.7*pressure_70[i])**0.5) for i in range(len(pressure_70))]
+X_70 = [-30 + i*deltr for i in range(len(pressure_70))]
+Y_70 = [abs(-30 + i*deltr)*((1.7*pressure_70[i])**0.5) for i in range(len(pressure_70))]
 
 consumption_70 = 0
 for i in range(count):
