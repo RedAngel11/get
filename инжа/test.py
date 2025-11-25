@@ -24,8 +24,6 @@ Y_00 = [abs(-30 + i*deltr)*((1.7*pressure_00[i])**0.5) for i in range(len(pressu
 
 consumption_00 = 0
 for i in range(count):
-    # consumption_00 += 1.2*3.14*0.00045*(abs(-0.024 + i*0.00045)*((1.7*pressure_00[i])**0.5) +
-    #                               abs(-0.024 + (i+1)*0.00045)*((1.7*pressure_00[i + 1])**0.5))
     consumption_00 += (2*pressure_00[i]*ro)**0.5*np.pi*(2*abs(X_00[i]*deltr) - deltr**2)
 
 pressure_10 = []
